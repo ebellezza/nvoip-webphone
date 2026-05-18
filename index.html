@@ -1,0 +1,105 @@
+Yes! Hosting a simple page on GitHub Pages to test or use this script is completely free and takes just a few minutes.
+
+Because your script requires dynamic variables (${numberSip}, ${password}, and ${napikey}), we will build an HTML page that includes a simple form. This allows you to type in your credentials right on the page, and the script will load dynamically without exposing your sensitive SIP password in the public code.
+
+Here is the step-by-step guide to setting it up.
+
+Step 1: Create Your index.html File
+Create a file on your computer named index.html and paste the following code into it:
+
+HTML
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVoip Web Phone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="login-form">
+    <h2>NVoip Web Phone Login</h2>
+    <div class="input-group">
+        <label for="sip">SIP Number</label>
+        <input type="text" id="sip" placeholder="e.g., 1001">
+    </div>
+    <div class="input-group">
+        <label for="pass">Password</label>
+        <input type="password" id="pass" placeholder="Your SIP password">
+    </div>
+    <div class="input-group">
+        <label for="key">NVoip API Key</label>
+        <input type="text" id="key" placeholder="Your API Key">
+    </div>
+    <button onclick="initWebPhone()">Connect Phone</button>
+</div>
+
+<script>
+function initWebPhone() {
+    // 1. Get values from the input fields
+    const numberSip = document.getElementById('sip').value;
+    const password = document.getElementById('pass').value;
+    const napikey = document.getElementById('key').value;
+
+    if (!numberSip || !password || !napikey) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // 2. Hide the form login UI once connecting
+    document.getElementById('login-form').style.display = 'none';
+
+    // 3. Dynamically create and inject the NVoip script tag using your credentials
+    const script = document.createElement('script');
+    script.id = 'web-phone-init';
+    script.src = `https://content.nvoip.com.br/webphone/v2.1/index.js?numbersip=${numberSip}&password=${password}&lang=BR&napikey=${napikey}`;
+    
+    // 4. Append the script to the body to execute it
+    document.body.appendChild(script);
+}
+</script>
+
+</body>
+</html>
