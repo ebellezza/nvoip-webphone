@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Website Embed Example</title>
+
+  <!-- Helena Widget Script -->
+  <script 
+    type="application/javascript"
+    src="https://cdn.helena.run/scripts/widget/v2/h-widget-min.js"
+    data-companyid="626fb5de-0cc2-4209-b456-47b454ee6e14"
+    data-widgetid="48230ba8-9a6b-4e36-8616-5a503e60e0db">
+  </script>
+
   <style>
     .embed-container {
       width: 100%;
@@ -17,9 +26,23 @@
       border: 1px solid #ccc;
       border-radius: 8px;
     }
+
+    /* Simple CTA button styling */
+    .h-widget-trigger {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
+
+  <!-- CTA Button to trigger the widget -->
+  <button type="button" class="h-widget-trigger">
+    Entrar em contato
+  </button>
 
   <div class="embed-container">
     <iframe 
